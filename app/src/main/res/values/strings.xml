@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">NoteItSimple</string>
+    <string name="my_notes">My Notes</string>
+    <string name="search_button_description">Search button</string>
+    <string name="add_note_button">Add note button</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="search_notes">Search Notes</string>
+    <string name="add_note">Add Note</string>
+    <string name="add_at_least_a_title">Please add at least a title</string>
+    <string name="note_saved_successfully">Note saved successfully</string>
+    <string name="note_title">Note Title</string>
+    <string name="type_something">Type something&#8230;</string>
+    <string name="edit_note">Edit Note</string>
+    <string name="delete_note_button">Delete note button</string>
+    <string name="note_updated_successfully">Note updated successfully</string>
+    <string name="delete_note">Delete note</string>
+    <string name="are_you_sure_to_delete_note">Are you sure you want to delete this note?</string>
+    <string name="note_deleted">Note deleted successfully</string>
+    <string name="update">Update</string>
+    <string name="there_are_no_notes_available">There are no notes available!</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+</resources>
