@@ -23,7 +23,11 @@ fun ShowAlertDialog(
 
         },
         title = {
-            Text(text = title, style = MaterialTheme.typography.titleLarge)
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.primary
+            )
         },
         text = {
             Text(text = body, fontSize = getAlertDialogTextSize())

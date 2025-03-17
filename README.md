@@ -37,4 +37,5 @@ Hilt - Dependency Injection
 ## Architecture
 
 The app follows the MVVM (Model-View-ViewModel) architecture, which ensures a clear separation between UI and business logic:
-(Jetpack Compose) ↔ ViewModel ↔ Repository ↔ Room Database
+(Jetpack Compose) ↔ ViewModel ↔ Use Case ↔ Repository ↔ Room Database
+Presentation ↔ Domain ↔ Data

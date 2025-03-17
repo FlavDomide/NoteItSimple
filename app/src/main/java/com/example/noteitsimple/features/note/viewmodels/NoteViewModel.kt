@@ -4,7 +4,11 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.noteitsimple.features.note.data.models.Note
-import com.example.noteitsimple.features.note.data.repositories.NoteRepository
+import com.example.noteitsimple.features.note.domain.usecases.DeleteNote
+import com.example.noteitsimple.features.note.domain.usecases.GetAllNotes
+import com.example.noteitsimple.features.note.domain.usecases.GetNoteById
+import com.example.noteitsimple.features.note.domain.usecases.SaveNote
+import com.example.noteitsimple.features.note.domain.usecases.UpdateNote
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,7 +18,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NoteViewModel @Inject constructor(
-    private val repository: NoteRepository
+    private val saveNote: SaveNote,
+    private val updateNote: UpdateNote,
+    private val deleteNote: DeleteNote,
+    private val getNoteById: GetNoteById,
+    private val getAllNotes: GetAllNotes
 ) : ViewModel() {
     private val _noteListState = MutableStateFlow(NoteState<List<Note>>())
     val noteListState = _noteListState.asStateFlow()
@@ -32,7 +40,7 @@ class NoteViewModel @Inject constructor(
     fun getNoteById(id: Int) = viewModelScope.launch {
         _noteByIdState.update { it.copy(isLoading = true) }
         try {
-            repository.getNoteById(id).collect({ note ->
+            getNoteById.getNote(id).collect({ note ->
                 _noteByIdState.update { it.copy(isLoading = false, data = note) }
             })
         } catch (e: Exception) {
@@ -52,7 +60,7 @@ class NoteViewModel @Inject constructor(
                 title = title,
                 description = desc
             )
-            repository.saveNote(note)
+            saveNote.save(note)
             _noteListState.update { it.copy(isLoading = false) }
         } catch (e: Exception) {
             Log.d("Save note", "Save note error: $e")
@@ -67,7 +75,7 @@ class NoteViewModel @Inject constructor(
         _isLoading.value = true
         _noteListState.update { it.copy(isLoading = true) }
         try {
-            repository.updateNote(note)
+            updateNote.update(note)
             _noteListState.update { it.copy(isLoading = true) }
             _isLoading.value = false
         } catch (e: Exception) {
@@ -81,7 +89,7 @@ class NoteViewModel @Inject constructor(
     fun deleteNote(note: Note) = viewModelScope.launch {
         _noteListState.update { it.copy(isLoading = true) }
         try {
-            repository.deleteNote(note)
+            deleteNote.delete(note)
             _noteListState.update { it.copy(isLoading = false) }
         } catch (e: Exception) {
             Log.d("Delete note", "Delete note error: $e")
@@ -92,7 +100,7 @@ class NoteViewModel @Inject constructor(
 
     private fun getAllNotes() = viewModelScope.launch {
         try {
-            repository.getAllNotes().collect { notes ->
+            getAllNotes.getAll().collect { notes ->
                 _noteListState.update { it.copy(isLoading = false, data = notes) }
             }
         } catch (e: Exception) {

@@ -2,6 +2,7 @@ package com.example.noteitsimple.features.note.data.repositories
 
 import com.example.noteitsimple.features.note.data.datasource.NoteDatabase
 import com.example.noteitsimple.features.note.data.models.Note
+import com.example.noteitsimple.features.note.domain.INoteRepository
 import kotlinx.coroutines.flow.Flow
 
 class NoteRepository(db: NoteDatabase) : INoteRepository {

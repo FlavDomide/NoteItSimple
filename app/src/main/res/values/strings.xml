@@ -8,7 +8,7 @@
     <string name="add_note">Add Note</string>
     <string name="add_at_least_a_title">Please add at least a title</string>
     <string name="note_saved_successfully">Note saved successfully</string>
-    <string name="note_title">Note Title</string>
+    <string name="note_title">Add Note Title</string>
     <string name="type_something">Type something&#8230;</string>
     <string name="edit_note">Edit Note</string>
     <string name="delete_note_button">Delete note button</string>
@@ -20,4 +20,5 @@
     <string name="there_are_no_notes_available">There are no notes available!</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="save">Save</string>
 </resources>
